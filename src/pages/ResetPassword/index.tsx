@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import {Link} from 'react-router-dom';
-import { FiArrowRight } from 'react-icons/fi'
+import { FiArrowRight, FiArrowLeft } from 'react-icons/fi'
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import Footer from '../../components/Footer';
@@ -9,20 +9,19 @@ import Button from '../../components/Button';
 
 import { Container, Content,  Presentation } from './styles';
 
-interface SignInFormData {
+interface RestPasswordFormData {
     email: string;
-    password: string;
 }
 
-const SignIn: React.FC = () => {
+const ResetPassword: React.FC = () => {
 
     const formRef = useRef<FormHandles>(null);
 
     const handleSubmit = useCallback(
-        async (data: SignInFormData) => {
+        async (data: RestPasswordFormData) => {
             try{
                 formRef.current?.setErrors({});
-                return console.log(data.email, data.password)
+                return console.log(data.email)
             }catch(err){
                 return console.log(err);
             }
@@ -38,15 +37,13 @@ const SignIn: React.FC = () => {
                 </Presentation>
                 <Content>
                     <Form ref={formRef} onSubmit={handleSubmit}>
-                        <h1>Authentication</h1>
+                        <h1>Reset password</h1>
                         <div>
-                            <Input name="email" placeholder="Email" />
-                            <Input name="password" type="password" placeholder="Password" />
-                            <Link to="/reset-password">I forget my password </Link>
-                            <Button type="submit">Log In  <FiArrowRight /></Button>
+                            <Input name="email"  placeholder="Email" />
+                            <Button type="submit">Send Link  <FiArrowRight /></Button>
                         </div>
                     </Form>
-                    <Link to='/signup'>Sign Up  <FiArrowRight /></Link>
+                    <Link to='/'><FiArrowLeft /> Back</Link>
                 </Content>
             </Container>
             <Footer />
@@ -54,4 +51,4 @@ const SignIn: React.FC = () => {
     )
 }
 
-export default SignIn;
+export default ResetPassword;
