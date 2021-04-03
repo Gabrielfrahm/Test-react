@@ -1,12 +1,11 @@
 import styled from 'styled-components';
+import {shade} from 'polished';
 
 export const Container = styled.div`
     height: 90vh;
     width: 100vw;
     display: flex;
-    align-items: stretch;
-    
-    
+    align-items: stretch; 
 `;
 
 export const Content = styled.div`
@@ -27,6 +26,10 @@ export const Content = styled.div`
         font-weight: bold;
         text-decoration: none;
     }
+
+    > a:hover{
+        color: ${shade(0.2, '#707070' )}
+    }
     
         form {
             margin-top: 46px;
@@ -43,7 +46,7 @@ export const Content = styled.div`
                 font-style: italic;
             }
 
-            div {
+            > div {
                 background-color: #FFFFFF;
                 border: 2px solid #EBEBEB;
                 border-radius: 10px;
@@ -54,6 +57,7 @@ export const Content = styled.div`
                 -webkit-box-shadow: 5px 7px 5px -2px rgba(0,0,0,0.39);
                 -moz-box-shadow: 5px 7px 5px -2px rgba(0,0,0,0.39);
                 box-shadow: 5px 7px 5px -2px rgba(0,0,0,0.39); 
+
 
                 a {
                     list-style: none;

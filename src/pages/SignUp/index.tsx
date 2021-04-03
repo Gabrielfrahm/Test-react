@@ -1,4 +1,6 @@
 import React, { useCallback, useRef } from 'react';
+import * as Yup from  'yup';
+import getValidationErrors from '../../utils/getValidationErrors';
 import {Link} from 'react-router-dom';
 import { FiArrowRight, FiArrowLeft } from 'react-icons/fi'
 import { FormHandles } from '@unform/core';
@@ -23,9 +25,23 @@ const SignUp: React.FC = () => {
         async (data: SignUpFormData) => {
             try{
                 formRef.current?.setErrors({});
+                const schema = Yup.object().shape({
+                    name: Yup.string().required('Nome Obrigatório'),
+                    email: Yup.string().required('E-mail Obrigatório').email('Digite um Email valido'),
+                    password: Yup.string().required('Senha Obrigatório'),
+                })
+
+                await schema.validate(data, {
+                    abortEarly: false,
+                });
+
                 return console.log(data.email, data.password)
             }catch(err){
-                return console.log(err);
+                if (err instanceof Yup.ValidationError) {
+                    const errors = getValidationErrors(err);
+                    formRef.current?.setErrors(errors);
+                    return;
+                }
             }
     },[])
 

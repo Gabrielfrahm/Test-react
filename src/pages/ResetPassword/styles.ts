@@ -1,3 +1,4 @@
+import { shade } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -27,6 +28,10 @@ export const Content = styled.div`
         font-weight: bold;
         text-decoration: none;
     }
+
+    > a:hover{
+        color: ${shade(0.2, '#707070' )}
+    }
     
         form {
             margin-top: 46px;
@@ -43,7 +48,7 @@ export const Content = styled.div`
                 font-style: italic;
             }
 
-            div {
+            > div {
                 background-color: #FFFFFF;
                 border: 2px solid #EBEBEB;
                 border-radius: 10px;

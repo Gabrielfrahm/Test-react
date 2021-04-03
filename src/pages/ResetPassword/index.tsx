@@ -1,4 +1,6 @@
 import React, { useCallback, useRef } from 'react';
+import * as Yup from 'yup';
+import getValidationErrors from '../../utils/getValidationErrors';
 import {Link} from 'react-router-dom';
 import { FiArrowRight, FiArrowLeft } from 'react-icons/fi'
 import { FormHandles } from '@unform/core';
@@ -21,9 +23,20 @@ const ResetPassword: React.FC = () => {
         async (data: RestPasswordFormData) => {
             try{
                 formRef.current?.setErrors({});
+                const schema = Yup.object().shape({
+                    email: Yup.string().required('E-mail Obrigatório').email('Digite um Email valido'),
+                });
+
+                await schema.validate(data, {
+                    abortEarly: false,
+                });
                 return console.log(data.email)
             }catch(err){
-                return console.log(err);
+                if (err instanceof Yup.ValidationError) {
+                    const errors = getValidationErrors(err);
+                    formRef.current?.setErrors(errors);
+                    return;
+                }
             }
     },[])
 
