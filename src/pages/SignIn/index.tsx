@@ -59,10 +59,10 @@ const SignIn: React.FC = () => {
                             <Input name="email" placeholder="Email" />
                             <Input name="password" type="password" placeholder="Password" />
                             <Link to="/reset-password">I forget my password </Link>
-                            <Button type="submit">Log In  <FiArrowRight /></Button>
+                            <Button type="submit">Log In  <FiArrowRight  style={{verticalAlign: 'middle'}} /></Button>
                         </div>
                     </Form>
-                    <Link to='/signup'>Sign Up  <FiArrowRight /></Link>
+                    <Link to='/signup'>Sign Up  <FiArrowRight  style={{verticalAlign: 'middle'}} /></Link>
                 </Content>
             </Container>
             <Footer />

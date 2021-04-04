@@ -53,10 +53,10 @@ const ResetPassword: React.FC = () => {
                         <h1>Reset password</h1>
                         <div>
                             <Input name="email"  placeholder="Email" />
-                            <Button type="submit">Send Link  <FiArrowRight /></Button>
+                            <Button type="submit">Send Link  <FiArrowRight  style={{verticalAlign: 'middle'}} /></Button>
                         </div>
                     </Form>
-                    <Link to='/'><FiArrowLeft /> Back</Link>
+                    <Link to='/'><FiArrowLeft  style={{verticalAlign: 'middle'}} /> Back</Link>
                 </Content>
             </Container>
             <Footer />

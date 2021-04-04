@@ -16,7 +16,7 @@ export const Container = styled.div<InputProps>`
     ${props =>
     props.isError &&
     css`
-      border: 1px solid #c53030;
+      border-bottom: 1px solid #c53030;
       border-radius: 5px 5px 0 0;
     `}
 
@@ -28,7 +28,7 @@ export const Container = styled.div<InputProps>`
         border-radius: none;
         font-size: 16px;
         font-style: italic;
-        border-bottom: 1px solid #EBEBEB;
+        border-bottom: 2px solid #EBEBEB;
         &::-webkit-input-placeholder {
             font-size: 15px;
             color: #9D9D9D;
@@ -40,4 +40,5 @@ export const Container = styled.div<InputProps>`
 
 export const Error = styled.span`
     color: #c53030;
+    font-weight: bold;
 `;

@@ -60,10 +60,10 @@ const SignUp: React.FC = () => {
                             <Input name="name" placeholder="Name" />
                             <Input name="email" placeholder="Email" />
                             <Input name="password" type="password" placeholder="Password" />
-                            <Button type="submit">Register  <FiArrowRight /></Button>
+                            <Button type="submit">Register  <FiArrowRight style={{verticalAlign: 'middle'}}/></Button>
                         </div>
                     </Form>
-                    <Link to='/'><FiArrowLeft /> Back</Link>
+                    <Link to='/'><FiArrowLeft  style={{verticalAlign: 'middle'}} /> Back</Link>
                 </Content>
             </Container>
             <Footer />

@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import ResetPassword from '../pages/ResetPassword';
+import Dashboard from '../pages/Dashboard';
 
 
 const Routes: React.FC = () => {
@@ -10,7 +11,8 @@ const Routes: React.FC = () => {
         <Switch>
             <Route path='/' exact component={SignIn} />
             <Route path='/reset-password' component={ResetPassword} />
-            <Route path='/Signup' component={SignUp} />
+            <Route path='/signup' component={SignUp} />
+            <Route path='/dashboard'  component={Dashboard} />
         </Switch>
     )
 }
