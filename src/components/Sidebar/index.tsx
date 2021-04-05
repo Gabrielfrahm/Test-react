@@ -6,12 +6,12 @@ import {SideDiv} from './styles';
 
 interface SidebarProps {
     open: boolean,
-    closed: boolean,
+    closed: () => void,
 }
 
 const Sidebar : React.FC<SidebarProps> = ({open, closed}) =>{
     let toggleStyled = 'translateX(-100%)';
-    if(open){
+    if(open ){
         toggleStyled = 'translateX(0)'
     }
 

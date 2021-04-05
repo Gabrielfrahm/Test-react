@@ -3,13 +3,13 @@ import {BackdropDiv} from './styles';
 
 interface BackdropProps {
     show: boolean,
-    clicked: boolean,
+    clicked: () => void,
 }
 
 const Backdrop: React.FC<BackdropProps> = ({show, clicked}) => {
     
     return (
-        show ? <BackdropDiv onClick={() => clicked}></BackdropDiv> : null
+        show ? <BackdropDiv onClick={clicked}></BackdropDiv> : null
     )
 }
 

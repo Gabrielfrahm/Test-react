@@ -5,7 +5,7 @@ import {Header,Nav} from './styles';
 import MenuBurger from '../../Sidebar/MenuBurger';
 
 interface ToolbarProps {
-    drawerToggleClicked: boolean,
+    drawerToggleClicked: () => void,
 }
 
 const Toolbar : React.FC<ToolbarProps> = ({drawerToggleClicked}) => {

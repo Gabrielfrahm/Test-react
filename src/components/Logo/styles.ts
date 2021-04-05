@@ -7,6 +7,8 @@ export const Span = styled.span`
     font-style: italic;
     margin-top: 25px;
     text-align: center;
+
+ 
 `;
 
 export const Hr = styled.hr` 
