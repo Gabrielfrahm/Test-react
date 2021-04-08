@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
-import Button from '../../components/Button';
 import ButtonGames from '../../components/ButtonGames';
 import Footer from '../../components/Footer';
 import Toolbar from '../../components/Navigation/Toolbar';
 import Sidebar from '../../components/Sidebar';
 import api from '../../server/api';
 
-import { Container, Content, Title } from './styles';
+import { Container, Content, Title, Button } from './styles';
 
 interface GamesProps {
     type: string;
@@ -21,7 +20,8 @@ interface GamesProps {
 
 const Dashboard: React.FC = () => {
     const [showSide, setShowSide] = useState(false);
-    const [games , setGames] = useState<GamesProps[]>([])
+    const [active, setActive] = useState(false);
+    const [games, setGames] = useState<GamesProps[]>([])
 
     const handleSideDrawerClosed = useCallback(() => {
         setShowSide(false);
@@ -31,15 +31,22 @@ const Dashboard: React.FC = () => {
         setShowSide(!showSide);
     }, [showSide])
 
+    const handleClickedInButtonGame = useCallback((gameName) => {
+        if(gameName){
+            setActive(!active);
+        }
+    }, [active])
 
-    useEffect(()=> {
-        api.get('').then(
+    useEffect(() => {
+        api.get('/types').then(
             response => {
                 setGames(response.data);
             }
-        )
-    },[])
-    console.log(games);
+        ).catch(err => {
+            console.log(err);
+        })
+    }, [])
+
     return (
         <>
             <Toolbar drawerToggleClicked={handleSideToggle} />
@@ -49,9 +56,17 @@ const Dashboard: React.FC = () => {
                     <Title>RECENT GAMES</Title>
                     <span>Filters</span>
                     {games.map(game => (
-                        <ButtonGames type='button' key={game.type} color={game.color}>{game.type}</ButtonGames>
+                        <ButtonGames
+                            onClick={() => handleClickedInButtonGame(game.type)}
+                            isActive={active}
+                            type='button'
+                            key={game.type}
+                            color={game.color}
+                        >
+                            {game.type}
+                        </ButtonGames>
                     ))}
-                    <Button>New Bet <FiArrowRight style={{verticalAlign: 'middle'}} /></Button>
+                    <Button>New Bet <FiArrowRight style={{ verticalAlign: 'middle' }} /></Button>
                 </Content>
             </Container>
             <Footer />

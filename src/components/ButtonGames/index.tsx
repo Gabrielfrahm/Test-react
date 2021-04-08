@@ -4,16 +4,17 @@ import {Container} from './styles'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     color: string;
+    isActive?: boolean;
 }
 
 const ButtonGames: React.FC<ButtonProps> = ({
-    children, color, ...rest
+    children, color, isActive, ...rest
 }) => {
     return (
-        <Container color={color} type="button" {...rest}>
+        <Container isActive={isActive} color={color} type="button" {...rest}>
            {children}
         </Container>
     );
 }
 
-export default ButtonGames;
+export default ButtonGames; 
