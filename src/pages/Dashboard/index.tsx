@@ -19,9 +19,14 @@ interface GamesProps {
 }
 
 const Dashboard: React.FC = () => {
+    //menu toggle
     const [showSide, setShowSide] = useState(false);
+    //state of active button 
     const [active, setActive] = useState(false);
-    const [games, setGames] = useState<GamesProps[]>([])
+    //state of games of json
+    const [games, setGames] = useState<GamesProps[]>([]);
+    //state of game selected to user
+    const [gameSelected, setGameSelected] = useState('');
 
     const handleSideDrawerClosed = useCallback(() => {
         setShowSide(false);
@@ -32,10 +37,10 @@ const Dashboard: React.FC = () => {
     }, [showSide])
 
     const handleClickedInButtonGame = useCallback((gameName) => {
-        if(gameName){
-            setActive(!active);
-        }
-    }, [active])
+        setGameSelected(gameName);
+        console.log(gameName)
+        setActive(true);
+    }, [])
 
     useEffect(() => {
         api.get('/types').then(
@@ -58,7 +63,7 @@ const Dashboard: React.FC = () => {
                     {games.map(game => (
                         <ButtonGames
                             onClick={() => handleClickedInButtonGame(game.type)}
-                            isActive={active}
+                            isActive={gameSelected === game.type ? active: false }
                             type='button'
                             key={game.type}
                             color={game.color}
